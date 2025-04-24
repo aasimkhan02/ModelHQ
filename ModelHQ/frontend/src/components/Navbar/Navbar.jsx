@@ -39,10 +39,14 @@ const Navbar = () => {
     if (location.pathname === '/employee_attrition') {
         return null;
     }
+    if (location.pathname === '/diabetes_prediction') {
+        return null;
+    }
+
 
     return (
         <div className='Navbar'>
-            <h2 className='logo'>ModelHQ</h2>
+            <h2 className='logo'>ModelHub</h2>
             <ul className='nav-list'>
                 <li><Link to="/" className="nav-link"><h3>Home</h3></Link></li>
                 <li

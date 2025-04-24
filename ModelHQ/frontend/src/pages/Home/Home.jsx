@@ -33,7 +33,7 @@ const Home = () => {
                 <hr className='hr4'/>
                 <div className="hero-texts">
                     <h3>Redefining Predictions</h3>
-                    <h1>ModelHQ</h1>
+                    <h1>ModelHub</h1>
                     <h2>Bringing Every Prediction Model to Your Fingertips</h2>
                     <button>Explore Models</button>
                 </div>

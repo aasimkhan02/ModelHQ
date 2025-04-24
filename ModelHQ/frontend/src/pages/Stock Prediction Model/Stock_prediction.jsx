@@ -71,21 +71,18 @@ const Stock_prediction = () => {
                     {isLoading ? 'Loading...' : 'Search'}
                 </button>
                 <div className="predictions">
-                    <h2>Predicted Prices for {selectedStock || 'Selected Stock'}</h2>
                     {predictions.length > 0 ? (
-                        <ul>
+                        <div className="predictions-container">
                             {predictions.map((price, index) => (
-                                <li key={index}>
-                                    Day {index + 1}: ${price.toFixed(2)}
-                                </li>
+                                <div key={index} className="prediction-card">
+                                    <h3>Day {index + 1}</h3>
+                                    <p>${price.toFixed(2)}</p>
+                                </div>
                             ))}
-                        </ul>
-                    ) : (
-                        <p>No predictions yet. Select a stock and click Search.</p>
-                    )}
+                        </div>
+                    ) : null}
                 </div>
             </div>
-
             <div className={`sidebar-model-details ${isSidebarOpen ? 'open' : ''}`}>
                 <FaTimes className="close-icon" onClick={() => setIsSidebarOpen(false)} />
                 <div className="model-details-container">
@@ -120,7 +117,7 @@ const Stock_prediction = () => {
                                         <p>Future price forecasting with accuracy metrics.</p>
                                     </li>
                                 </div>
-                                <h1>Key Components</h1>
+                                <h1 className='keyComponenets'>Key Components</h1>
                                 <div className="DataSource">
                                     <h3>Data source</h3>
                                     <ul>
@@ -140,6 +137,22 @@ const Stock_prediction = () => {
                                 <div className="ApproachUsed">
                                     <h3>Ensemble Approach</h3>
                                     <p>Our system leverages an LSTM-based model, optimized for sequential stock price data. It captures long-term dependencies and trends, enhancing prediction accuracy.</p>
+                                </div>
+                                <div className="download-buttons">
+                                    <a
+                                        href="./../../../../backend/models/Stock prediction/stock.ipynb"
+                                        download="StockPrediction.ipynb"
+                                        className="download-button"
+                                    >
+                                        Download Python Notebook
+                                    </a>
+                                    <a
+                                        href="./../../../../backend/models/Stock prediction/AAPL.h5"
+                                        download="StockPrediction.h5"
+                                        className="download-button"
+                                    >
+                                        Download .h5 Model
+                                    </a>
                                 </div>
                             </div>}
                         {activeSection === 'implementation' && 

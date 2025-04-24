@@ -16,6 +16,7 @@ body {
     color: white;
     font-size: 30px;
     font-weight: bold;
+    box-shadow: none !important;
 }
 .header .logo{
     font-size: 30px;
@@ -30,7 +31,7 @@ body {
 .HeartDiseasePrediction-hero{
     width: 100%;
     height: 50vh;
-    margin-top: 20vh;
+    margin-top: 10vh;
     text-align: center;
 }
 .HeartDiseasePrediction-hero h1 {

@@ -1,191 +1,158 @@
-/* Main Container */
+/* General Styles */
 .CarPricePrediction {
-    width: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
     min-height: 100vh;
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
-/* Header Styles */
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px 5% !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #2c3e50;
+    color: #000000;
 }
 
 .book-icon {
     font-size: 28px;
-    color: #2c3e50;
+    color: #000000;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.book-icon:hover {
-    transform: rotate(15deg);
 }
 
 /* Hero Section */
 .CarPricePrediction-hero {
     text-align: center;
-    padding: 60px 5% 40px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 60px 5%;
+    background-color: white;
 }
 
 .CarPricePrediction-hero h1 {
-    font-size: 2.8rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
+    font-size: 4.5rem;
+    margin-bottom: 10px;
+    color: black;
+    padding: 0% 10%;
 }
 
 .CarPricePrediction-hero h1 span {
-    color: #3498db;
+    color: #007EA7;
 }
 
 .CarPricePrediction-hero p {
-    font-size: 1.2rem;
-    color: #7f8c8d;
-    max-width: 700px;
-    margin: 0 auto;
+    font-size: 1.6rem;
+    color: #555;
+    margin-bottom: 10vh;
 }
 
-/* Input Form Section */
+/* Input Form */
 .car-detection {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 5%;
-    background-color: white;
+    max-width: 900px;
+    margin: -30px auto 0;
+    background: #ffffff;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transform: translateY(-30px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .notice {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+    color: white;
 }
 
 .notice h3 {
     font-size: 1.5rem;
-    color: #2c3e50;
-    margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .notice p {
-    color: #7f8c8d;
     font-size: 1rem;
+    color: #c2c2c2;
 }
 
 .input-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    margin-bottom: 30px;
-}
-
-.input-group {
-    position: relative;
 }
 
 .input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: bold;
     color: #2c3e50;
+    margin-bottom: 5px;
+    display: block;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
 .input-group input:focus {
+    border-color: #007bff;
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
-}
-
-.input-tooltip {
-    position: absolute;
-    bottom: -25px;
-    left: 0;
-    font-size: 12px;
-    color: #7f8c8d;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.input-group:hover .input-tooltip {
-    opacity: 1;
 }
 
 /* Prediction Button */
 .predict-button {
     width: 100%;
     padding: 15px;
-    background-color: #3498db;
-    color: white;
+    background-color: #007bff;
+    color: #ffffff;
     border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 600;
+    border-radius: 5px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
 .predict-button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
 }
 
 /* Prediction Results */
 .prediction-result {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    background: #f8f9fa;
+    border-radius: 5px;
     text-align: center;
 }
 
 .prediction-result h3 {
+    font-size: 1.5rem;
     color: #2c3e50;
-    margin-bottom: 10px;
 }
 
 .result-value {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    color: #28a745;
     font-weight: bold;
-    color: #27ae60;
-    margin: 10px 0;
 }
 
 .confidence {
     font-size: 1rem;
-    color: #7f8c8d;
-    margin-bottom: 10px;
-}
-
-.result-explanation {
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    font-style: italic;
+    color: #555;
 }
 
 .error-message {
-    color: #e74c3c;
-    font-weight: 600;
+    color: #dc3545;
+    font-weight: bold;
 }
 
 /* Sidebar Styles */

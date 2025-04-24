@@ -3,7 +3,6 @@ import './BreastCancer.css';
 import { FaUpload, FaSpinner, FaDiagnoses, FaTimes, FaAtlas } from 'react-icons/fa';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import './../common.css'
 
 const BreastCancer = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -180,14 +179,14 @@ const BreastCancer = () => {
 
                             <div className="download-buttons">
                                 <a
-                                    href="/path/to/notebook.ipynb"
+                                    href="./../../../../backend/models/Breast Cancer/Breast_cancer_new.ipynb"
                                     download="BreastCancer_Notebook.ipynb"
                                     className="download-button"
                                 >
                                     Download Python Notebook
                                 </a>
                                 <a
-                                    href="/path/to/model.h5"
+                                    href="./../../../../backend/models/Breast Cancer/Breast_cancer_new.h5"
                                     download="BreastCancer_Model.h5"
                                     className="download-button"
                                 >

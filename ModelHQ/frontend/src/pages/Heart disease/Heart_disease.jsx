@@ -161,43 +161,74 @@ const HeartDiseasePrediction = () => {
                     <div className="model-details-content">
                         {activeSection === 'overview' && 
                             <div className="model-details-overview">
-                                <h1>Model Architecture</h1>
-                                <p>High-level overview of our heart disease prediction system</p>
+                                <h1>Model Overview</h1>
+                                <p>
+                                    Our Heart Disease Prediction Model is a machine learning system designed to assess the risk of heart disease based on key health indicators. It provides predictions with high accuracy to assist healthcare professionals.
+                                </p>
+                                
+                                <h2 className='workflow'>Workflow</h2>
                                 <div className="overview-cards">
                                     <li>
                                         <div className="circle">1</div>
                                         <h3>Data Collection & Preprocessing</h3>
-                                        <p>Fetching and preprocessing heart disease data.</p>
+                                        <p>Gathering patient data, cleaning, and normalizing for model training.</p>
                                     </li>
                                     <li>
                                         <div className="circle">2</div>
                                         <h3>Model Architecture & Training</h3>
-                                        <p>Logistic Regression for heart disease prediction.</p>
+                                        <p>Using Logistic Regression for binary classification of heart disease.</p>
                                     </li>
                                     <li>
                                         <div className="circle">3</div>
                                         <h3>Prediction & Evaluation</h3>
-                                        <p>Heart disease detection with accuracy metrics.</p>
+                                        <p>Providing predictions with probability scores and accuracy metrics.</p>
                                     </li>
                                 </div>
-                                <h1>Key Components</h1>
+
+                                <h2 className='keycomponenets'>Key Components</h2>
                                 <div className="DataSource">
                                     <h3>Data Source</h3>
                                     <ul>
-                                        <li>Heart disease data – Fetched from a CSV file.</li>
-                                        <li>Features – Age, Sex, Cholesterol, etc.</li>
+                                        <li>
+                                            <a href="https://www.kaggle.com/ronitf/heart-disease-uci" target="_blank" rel="noopener noreferrer">
+                                                UCI Heart Disease Dataset (Kaggle)
+                                            </a>
+                                        </li>
+                                        <li>Features – Age, Cholesterol, Blood Pressure, etc.</li>
+                                        <li>Data preprocessing – Handling missing values and scaling features.</li>
                                     </ul>
                                 </div>
+
                                 <hr />
+
                                 <div className="ModelUsed">
                                     <h3>Machine Learning Models</h3>
                                     <ul>
                                         <li>Logistic Regression – Used for binary classification of heart disease.</li>
                                     </ul>
                                 </div>
+
                                 <div className="ApproachUsed">
                                     <h3>Approach</h3>
-                                    <p>Our system leverages Logistic Regression to predict heart disease based on features like age, cholesterol, and blood pressure.</p>
+                                    <p>
+                                        Our system leverages Logistic Regression to predict heart disease based on features like age, cholesterol, and blood pressure. It provides interpretable results for clinical use.
+                                    </p>
+                                </div>
+                                <div className="download-buttons">
+                                    <a
+                                        href="./../../../../backend/models/Heart disease/Heart_Disease.ipynb"
+                                        download="HeartDisease.ipynb"
+                                        className="download-button"
+                                    >
+                                        Download Python Notebook
+                                    </a>
+                                    <a
+                                        href="./../../../../backend/models/Heart disease/heart_disease_model.h5"
+                                        download="HeartDisease.pkl"
+                                        className="download-button"
+                                    >
+                                        Download Model File
+                                    </a>
                                 </div>
                             </div>}
                         {activeSection === 'implementation' && 
@@ -206,7 +237,7 @@ const HeartDiseasePrediction = () => {
                                 <p>Line-by-line code explanation of our model</p>
                                 <div className="implementation-code">
                                     <h2>Importing Libraries</h2>
-                                    <p>Before building the model, we need essential libraries for data manipulation, model training, and evaluation.</p>
+                                    <p>Essential libraries for data manipulation and model training.</p>
                                     <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
         {`import numpy as np
@@ -244,33 +275,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratif
         {`# Training the Logistic Regression model
 model = LogisticRegression()
 model.fit(X_train, y_train)`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <h2 style={{marginTop: '50px'}}>Evaluating the Model</h2>
-                                    <p>We evaluate the model's performance on both training and testing data.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
-        {`# Accuracy score on the training data
-X_train_prediction = model.predict(X_train)
-training_data_accuracy = accuracy_score(y_train, X_train_prediction)
-print('Accuracy score of the training data:', training_data_accuracy)
-
-# Accuracy score on the test data
-X_test_prediction = model.predict(X_test)
-test_data_accuracy = accuracy_score(y_test, X_test_prediction)
-print('Accuracy score of the test data:', test_data_accuracy)`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <h2 style={{marginTop: '50px'}}>Making Predictions</h2>
-                                    <p>We use the trained model to predict whether a person has heart disease.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
-        {`# Making predictions on new data
-input_data = (62, 0, 0, 140, 268, 0, 0, 160, 0, 3.6, 0, 2, 2)
-input_data_as_numpy_array = np.asarray(input_data)
-input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
-prediction = model.predict(input_data_reshaped)
-print('Prediction:', 'Healthy' if prediction[0] == 0 else 'Heart Disease')`}
                                         </SyntaxHighlighter>
                                     </div>
                                 </div>
@@ -323,32 +327,6 @@ print('Prediction:', 'Healthy' if prediction[0] == 0 else 'Heart Disease')`}
                                             <tr>
                                                 <td>F1 Score</td>
                                                 <td>0.835</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </section>
-
-                                <section className="metric-section">
-                                    <h2>Confusion Matrix</h2>
-                                    <p>Detailed breakdown of predictions</p>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Predicted Healthy</th>
-                                                <th>Predicted Heart Disease</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Actual Healthy</td>
-                                                <td>450</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Actual Heart Disease</td>
-                                                <td>60</td>
-                                                <td>440</td>
                                             </tr>
                                         </tbody>
                                     </table>

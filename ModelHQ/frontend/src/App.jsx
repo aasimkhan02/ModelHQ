@@ -8,12 +8,12 @@ import Spam from './pages/Spam detection/Spam_detection'
 import Movie from './pages/Movie Recommendation/Movie_recommendation'
 import Housing from './pages/Housing price prediction/hpp'
 import Heart_disease from './pages/Heart disease/Heart_disease'
-import Diabetes_prediction from './pages/Diabetes_prediction/diabetes_prediction'
 import BreastCancer from "./pages/Breast Cancer/BreastCancer";
 import SalesPrediction from './pages/sales prediction/salesPrediction';
 import CarPricePrediction from './pages/Car Price Prediction/CarPricePrediction'
 import BankChurnPrediction from "./pages/BankChern/BankChernPrediction";
 import EmployeeAttritionPrediction from "./pages/Employeeattrition/EmployeeAttritionPrediction";
+import DiabetesPrediction from "./pages/Diabetes Prediction Model/DiabetesPrediction";
 
 const App = () => {
 
@@ -29,12 +29,12 @@ const App = () => {
         <Route path='/movie' element={<Movie/>} />
         <Route path='/hpp' element={<Housing/>} />
         <Route path='/heart' element={<Heart_disease/>} />
-        <Route path='/diabetes' element={<Diabetes_prediction/>} />
         <Route path='/BreastCancer' element={<BreastCancer/>} />
         <Route path='/sales_prediction' element={<SalesPrediction />} />
         <Route path='/car_price_prediction' element={<CarPricePrediction />} />
         <Route path='/bank_churn' element={<BankChurnPrediction />} />
         <Route path='/employee_attrition' element={<EmployeeAttritionPrediction />} />
+        <Route path='/diabetes_prediction' element={<DiabetesPrediction />} />
       </Routes>
     </Router>
   );

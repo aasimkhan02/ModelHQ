@@ -154,19 +154,18 @@ const Models = () => {
                             <div className="Model-heading">
                                 <h2>Diabetes Prediction</h2>
                                 <div className="Model-accuracy">
-                                    <FaBolt className="bolt-icon" style={{color: '#007EA7'}}/>
-                                    <h4 style={{fontWeight: 500}}>98%</h4>
+                                    <FaBolt className="bolt-icon" style={{ color: '#007EA7' }} />
+                                    <h4 style={{ fontWeight: 500 }}>98%</h4>
                                 </div>
-                                </div>
-                                    <p className='Model-subheading'>AI-powered diabetes prediction using patient data</p>
-                                    <div className="Model-tags">
-                                        <li>Healthcare</li>
-                                        <li>regression</li>
-                                </div>
+                            </div>
+                            <p className='Model-subheading'>AI-powered diabetes prediction using patient data.</p>
+                            <div className="Model-tags">
+                                <li>Healthcare</li>
+                                <li>Classification</li>
+                            </div>
                             <hr />
-                            <button className='TryNow stock' onClick={() => navigate('/diabetes')}>Try Now</button>
+                            <button className='TryNow stock' onClick={() => navigate('/diabetes_prediction')}>Try Now</button>
                         </li>
-                        
                         <li>
                             <div className="Marketing">
                                 <p>Featured</p>

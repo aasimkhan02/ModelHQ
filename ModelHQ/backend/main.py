@@ -13,6 +13,7 @@ import joblib  # For loading the scaler
 import pandas as pd
 import cv2
 import pickle
+from tensorflow.keras.models import load_model
 
 app = FastAPI()
 
@@ -29,7 +30,7 @@ app.add_middleware(
 breast_cancer_model = tf.keras.models.load_model("./models/Breast Cancer/Breast_cancer_new.h5")
 xgb_model = xgb.XGBClassifier()
 xgb_model.load_model("./models/Heart disease/heart_disease_model.h5")
-scaler = joblib.load("./models/Heart disease/scaler.pkl")  # Correct path to the scaler
+scaler = joblib.load("./models/Heart disease/scaler.pkl")
 
 # Define input schemas
 class StockInput(BaseModel):
@@ -317,6 +318,103 @@ def predict_employee_attrition(data: dict):
             "status": "success",
             "prediction": int(prediction),  # 1: Attrition, 0: No Attrition
             "probability": float(probability)
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
+    
+@app.post("/predict/diabetes")
+def predict_diabetes(data: dict):
+    try:
+        # Validate input data
+        required_columns = [
+            "Pregnancies", "Glucose", "BloodPressure", "SkinThickness",
+            "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"
+        ]
+        for col in required_columns:
+            if col not in data or data[col] == '' or data[col] is None:
+                return {
+                    "status": "error",
+                    "message": f"Missing or invalid value for '{col}'"
+                }
+
+        # Load the trained model
+        model = load_model("./models/Diabetes/diabetes_model.h5")
+
+        # Load the scaler
+        with open("./models/Diabetes/scaler.pkl", "rb") as f:
+            scaler = pickle.load(f)
+
+        # Load reference columns
+        with open("./models/Diabetes/reference.pkl", "rb") as f:
+            reference = pickle.load(f)
+
+        # Convert input data to a DataFrame
+        input_df = pd.DataFrame([data])
+
+        # Ensure input columns match the training columns
+        for col in reference["input_columns"]:
+            if col not in input_df.columns:
+                input_df[col] = 0
+
+        input_df = input_df[reference["input_columns"]]
+
+        # Scale the input data
+        input_scaled = scaler.transform(input_df)
+
+        # Make prediction
+        probability = model.predict(input_scaled)[0][0]
+        prediction = 1 if probability > 0.5 else 0
+
+        return {
+            "status": "success",
+            "prediction": prediction,
+            "probability": float(probability)
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
+
+@app.post("/predict/housing_price")
+def predict_housing_price(data: dict):
+    try:
+        # Load the trained model
+        with open("./models/Housing/linear_regression.pkl", "rb") as f:
+            linear_model = pickle.load(f)
+
+        # Load the scaler
+        with open("./models/Housing/scaler.pkl", "rb") as f:
+            scaler = pickle.load(f)
+
+        # Load reference columns
+        with open("./models/Housing/reference_columns.pkl", "rb") as f:
+            reference_columns = pickle.load(f)
+
+        # Convert input data to a DataFrame
+        input_df = pd.DataFrame([data])
+
+        # Ensure input columns match the training columns
+        for col in reference_columns:
+            if col not in input_df.columns:
+                input_df[col] = 0
+
+        input_df = input_df[reference_columns]
+
+        # Scale the input data
+        input_scaled = scaler.transform(input_df)
+
+        # Make prediction
+        prediction = linear_model.predict(input_scaled)[0]
+
+        return {
+            "status": "success",
+            "prediction": float(prediction)
         }
 
     except Exception as e:
