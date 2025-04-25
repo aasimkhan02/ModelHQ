@@ -236,7 +236,7 @@ const Models = () => {
                                     <h4 style={{ fontWeight: 500 }}>93%</h4>
                                 </div>
                             </div>
-                            <p className='Model-subheading'>AI-powered model predicting employee attrition based on workplace and demographic data.</p>
+                            <p className='Model-subheading'>AI-powered model predicting employee attrition based on data.</p>
                             <div className="Model-tags">
                                 <li>HR</li>
                                 <li>Classification</li>

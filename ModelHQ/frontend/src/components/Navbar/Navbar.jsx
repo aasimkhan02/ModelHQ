@@ -43,7 +43,6 @@ const Navbar = () => {
         return null;
     }
 
-
     return (
         <div className='Navbar'>
             <h2 className='logo'>ModelHub</h2>
@@ -58,7 +57,7 @@ const Navbar = () => {
                     {dropdownOpen && (
                         <ul className="dropdown-menu">
                             <li><Link to="/models" className="nav-link">Models</Link></li>
-                            <li><Link to="/tutorials" className="nav-link">Tutorials</Link></li>
+                            <li><Link to="/learning" className="nav-link">Tutorials</Link></li>
                         </ul>
                     )}
                 </li>

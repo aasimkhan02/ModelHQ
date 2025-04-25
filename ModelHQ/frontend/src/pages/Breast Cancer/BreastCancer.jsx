@@ -196,14 +196,17 @@ const BreastCancer = () => {
                         </div>
                     }
                         {activeSection === 'implementation' && 
-                            <div className="model-details-implementation">
-                                <h1>Model Implementation</h1>
-                                <p>Line-by-line code explanation of our model</p>
-                                <div className="implementation-code">
-                                    <h2>Importing Libraries</h2>
-                                    <p>Essential libraries for image processing and deep learning.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
+    <div className="model-details-implementation">
+        <h1>Model Implementation</h1>
+        <p>Line-by-line code explanation of our model</p>
+        
+        {/* LIBRARIES SECTION */}
+        <div className="implementation-code">
+            <h2>1. Importing Essential Libraries</h2>
+            <p>These libraries provide the foundation for our deep learning system:</p>
+            
+            <div className="code-section">
+                <SyntaxHighlighter language="python" style={dracula}>
 {`import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
@@ -212,19 +215,38 @@ import numpy as np
 import cv2
 from PIL import Image
 import matplotlib.pyplot as plt`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <ul>
-                                        <li>tensorflow: Core deep learning framework</li>
-                                        <li>keras: High-level neural networks API</li>
-                                        <li>numpy: Numerical computing</li>
-                                        <li>cv2: Image processing</li>
-                                        <li>matplotlib: Visualization</li>
-                                    </ul>
-                                    <h2 style={{marginTop: '50px'}}>Loading and Preprocessing Images</h2>
-                                    <p>Preparing histopathology images for model training.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
+                </SyntaxHighlighter>
+            </div>
+            
+            <div className="code-explanation">
+                <h3>Detailed Explanation:</h3>
+                <ul>
+                    <li><strong>Line 1:</strong> <code>import tensorflow as tf</code> - Imports TensorFlow, the core deep learning framework we use to build neural networks.</li>
+                    <li><strong>Line 2:</strong> <code>from tensorflow.keras.models import Sequential</code> - Imports the Sequential model type which allows us to stack layers linearly.</li>
+                    <li><strong>Line 3:</strong> Imports specific layer types:
+                        <ul>
+                            <li><code>Conv2D</code> - For convolutional layers that detect image features</li>
+                            <li><code>MaxPooling2D</code> - For downsampling feature maps</li>
+                            <li><code>Flatten</code> - Converts 2D features to 1D for classification</li>
+                            <li><code>Dense</code> - Fully connected neural network layers</li>
+                            <li><code>Dropout</code> - Prevents overfitting by randomly disabling neurons</li>
+                        </ul>
+                    </li>
+                    <li><strong>Line 4:</strong> <code>ImageDataGenerator</code> - For real-time data augmentation during training.</li>
+                    <li><strong>Line 5:</strong> <code>numpy</code> - For numerical operations on image arrays.</li>
+                    <li><strong>Line 6:</strong> <code>cv2</code> (OpenCV) - For image loading and preprocessing.</li>
+                    <li><strong>Line 7-8:</strong> Visualization libraries for debugging and analysis.</li>
+                </ul>
+            </div>
+        </div>
+
+        {/* IMAGE PREPROCESSING SECTION */}
+        <div className="implementation-code">
+            <h2>2. Image Loading and Preprocessing</h2>
+            <p>This function standardizes all input images to a consistent format:</p>
+            
+            <div className="code-section">
+                <SyntaxHighlighter language="python" style={dracula}>
 {`def load_and_preprocess_image(image_path, img_size=(224, 224)):
     # Read image
     img = cv2.imread(image_path)
@@ -235,13 +257,29 @@ import matplotlib.pyplot as plt`}
     img = img / 255.0  # Normalize to [0,1]
     
     return img`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <p style={{marginTop: '15px'}}>This function loads an image, converts it to RGB format, resizes it to the required dimensions, and normalizes pixel values.</p>
-                                    <h2 style={{marginTop: '50px'}}>Data Augmentation</h2>
-                                    <p>Creating variations of training images to improve model robustness.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
+                </SyntaxHighlighter>
+            </div>
+            
+            <div className="code-explanation">
+                <h3>Key Processing Steps:</h3>
+                <ol>
+                    <li><strong>Line 1:</strong> Defines the function with default size 224x224 pixels (standard for CNNs)</li>
+                    <li><strong>Line 3:</strong> <code>cv2.imread()</code> loads the image as a NumPy array</li>
+                    <li><strong>Line 4:</strong> Converts from BGR (OpenCV default) to RGB color format</li>
+                    <li><strong>Line 7:</strong> Resizes image to target dimensions using bilinear interpolation</li>
+                    <li><strong>Line 8:</strong> Normalizes pixel values from 0-255 to 0-1 range for better neural network performance</li>
+                </ol>
+                <p><strong>Why this matters:</strong> Consistent image dimensions and normalized values help the model learn effectively.</p>
+            </div>
+        </div>
+
+        {/* DATA AUGMENTATION SECTION */}
+        <div className="implementation-code">
+            <h2>3. Data Augmentation Configuration</h2>
+            <p>Creates variations of training images to improve model generalization:</p>
+            
+            <div className="code-section">
+                <SyntaxHighlighter language="python" style={dracula}>
 {`train_datagen = ImageDataGenerator(
     rescale=1./255,
     rotation_range=20,
@@ -252,33 +290,122 @@ import matplotlib.pyplot as plt`}
     horizontal_flip=True,
     fill_mode='nearest'
 )`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <h2 style={{marginTop: '50px'}}>Building the CNN Model</h2>
-                                    <p>Defining the convolutional neural network architecture.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
+                </SyntaxHighlighter>
+            </div>
+            
+            <div className="code-explanation">
+                <h3>Augmentation Parameters Explained:</h3>
+                <table className="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Effect</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>rotation_range=20</code></td>
+                            <td>Random rotations up to 20 degrees</td>
+                            <td>Makes model invariant to slight rotations</td>
+                        </tr>
+                        <tr>
+                            <td><code>width_shift_range=0.2</code></td>
+                            <td>Horizontal shifts up to 20% of width</td>
+                            <td>Handles imperfect image centering</td>
+                        </tr>
+                        <tr>
+                            <td><code>shear_range=0.2</code></td>
+                            <td>Shear transformations</td>
+                            <td>Simulates different viewing angles</td>
+                        </tr>
+                        <tr>
+                            <td><code>zoom_range=0.2</code></td>
+                            <td>Random zooming up to 20%</td>
+                            <td>Accounts for magnification differences</td>
+                        </tr>
+                        <tr>
+                            <td><code>horizontal_flip=True</code></td>
+                            <td>Random left-right flips</td>
+                            <td>Doubles training data effectively</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Medical Relevance:</strong> These augmentations mimic real-world variations in histopathology slides while preserving diagnostic features.</p>
+            </div>
+        </div>
+
+        {/* MODEL ARCHITECTURE SECTION */}
+        <div className="implementation-code">
+            <h2>4. Building the CNN Architecture</h2>
+            <p>The core neural network design for feature extraction and classification:</p>
+            
+            <div className="code-section">
+                <SyntaxHighlighter language="python" style={dracula}>
 {`model = Sequential([
+    # First convolutional block
     Conv2D(32, (3,3), activation='relu', input_shape=(224, 224, 3)),
     MaxPooling2D(pool_size=(2,2)),
     
+    # Second convolutional block (deeper features)
     Conv2D(64, (3,3), activation='relu'),
     MaxPooling2D(pool_size=(2,2)),
     
+    # Third convolutional block (high-level features)
     Conv2D(128, (3,3), activation='relu'),
     MaxPooling2D(pool_size=(2,2)),
     
+    # Classification head
     Flatten(),
     Dense(128, activation='relu'),
-    Dropout(0.3),
-    Dense(1, activation='sigmoid')  # Binary classification
+    Dropout(0.3),  # Regularization
+    Dense(1, activation='sigmoid')  # Binary output
 ])`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <h2 style={{marginTop: '50px'}}>Compiling and Training</h2>
-                                    <p>Configuring the model for training with appropriate loss function and optimizer.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
+                </SyntaxHighlighter>
+            </div>
+            
+            <div className="code-explanation">
+                <h3>Architecture Breakdown:</h3>
+                <div className="architecture-visual">
+                    <div className="conv-block">
+                        <h4>Conv2D(32, (3,3)) → MaxPooling</h4>
+                        <p>Detects basic features like edges and textures</p>
+                        <p>32 filters, 3x3 kernel size</p>
+                    </div>
+                    <div className="arrow">→</div>
+                    <div className="conv-block">
+                        <h4>Conv2D(64, (3,3)) → MaxPooling</h4>
+                        <p>Identifies complex patterns like cell structures</p>
+                    </div>
+                    <div className="arrow">→</div>
+                    <div className="conv-block">
+                        <h4>Conv2D(128, (3,3)) → MaxPooling</h4>
+                        <p>Recognizes high-level features like tumor regions</p>
+                    </div>
+                    <div className="arrow">→</div>
+                    <div className="dense-block">
+                        <h4>Flatten → Dense(128) → Dropout → Sigmoid</h4>
+                        <p>Makes final benign/malignant classification</p>
+                    </div>
+                </div>
+                
+                <h3>Key Design Choices:</h3>
+                <ul>
+                    <li><strong>ReLU Activation:</strong> Introduces non-linearity while avoiding vanishing gradients</li>
+                    <li><strong>Max Pooling:</strong> Reduces spatial dimensions while preserving important features</li>
+                    <li><strong>Dropout(0.3):</strong> Randomly disables 30% of neurons during training to prevent overfitting</li>
+                    <li><strong>Sigmoid Output:</strong> Provides probability score between 0 (benign) and 1 (malignant)</li>
+                </ul>
+            </div>
+        </div>
+
+        {/* MODEL TRAINING SECTION */}
+        <div className="implementation-code">
+            <h2>5. Model Compilation and Training</h2>
+            <p>Configuring the learning process and training the model:</p>
+            
+            <div className="code-section">
+                <SyntaxHighlighter language="python" style={dracula}>
 {`model.compile(optimizer='adam',
               loss='binary_crossentropy',
               metrics=['accuracy'])
@@ -289,25 +416,102 @@ history = model.fit(
     validation_data=validation_generator,
     callbacks=[EarlyStopping(patience=3)]
 )`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                    <h2 style={{marginTop: '50px'}}>Making Predictions</h2>
-                                    <p>Classifying new histopathology images as benign or malignant.</p>
-                                    <div className="code-section">
-                                        <SyntaxHighlighter language="python" style={dracula}>
+                </SyntaxHighlighter>
+            </div>
+            
+            <div className="code-explanation">
+                <h3>Training Configuration:</h3>
+                <table className="training-table">
+                    <tr>
+                        <td><strong>Optimizer:</strong></td>
+                        <td><code>adam</code> - Adaptive learning rate optimizer that works well for most cases</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Loss Function:</strong></td>
+                        <td><code>binary_crossentropy</code> - Standard for binary classification problems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Metrics:</strong></td>
+                        <td><code>accuracy</code> - Tracks percentage of correct classifications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Epochs:</strong></td>
+                        <td>20 complete passes through the training data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Early Stopping:</strong></td>
+                        <td>Stops training if validation accuracy doesn't improve for 3 epochs</td>
+                    </tr>
+                </table>
+                
+                <h3>Training Process:</h3>
+                <ol>
+                    <li>The model sees batches of augmented images</li>
+                    <li>Computes loss and updates weights via backpropagation</li>
+                    <li>Evaluates on validation set after each epoch</li>
+                    <li>Automatically stops if performance plateaus</li>
+                </ol>
+            </div>
+        </div>
+
+        {/* PREDICTION SECTION */}
+        <div className="implementation-code">
+            <h2>6. Making Predictions</h2>
+            <p>Classifying new histopathology images:</p>
+            
+            <div className="code-section">
+                <SyntaxHighlighter language="python" style={dracula}>
 {`def predict_image(image_path):
+    # Preprocess the image
     img = load_and_preprocess_image(image_path)
     img = np.expand_dims(img, axis=0)  # Add batch dimension
     
+    # Get model prediction
     prediction = model.predict(img)[0][0]
+    
+    # Interpret results
     predicted_class = 'Malignant' if prediction > 0.5 else 'Benign'
     confidence = prediction if prediction > 0.5 else 1 - prediction
     
     return predicted_class, confidence`}
-                                        </SyntaxHighlighter>
-                                    </div>
-                                </div>
-                            </div>}
+                </SyntaxHighlighter>
+            </div>
+            
+            <div className="code-explanation">
+                <h3>Prediction Workflow:</h3>
+                <div className="prediction-flow">
+                    <div className="step">
+                        <div className="step-number">1</div>
+                        <p>Load and preprocess image</p>
+                    </div>
+                    <div className="arrow">→</div>
+                    <div className="step">
+                        <div className="step-number">2</div>
+                        <p>Add batch dimension (required by Keras)</p>
+                    </div>
+                    <div className="arrow">→</div>
+                    <div className="step">
+                        <div className="step-number">3</div>
+                        <p>Get raw prediction (0-1 probability)</p>
+                    </div>
+                    <div className="arrow">→</div>
+                    <div className="step">
+                        <div className="step-number">4</div>
+                        <p>Convert to class label + confidence %</p>
+                    </div>
+                </div>
+                
+                <h3>Decision Threshold:</h3>
+                <p>The threshold of 0.5 can be adjusted based on clinical requirements:</p>
+                <ul>
+                    <li><strong> 0.5:</strong> Classified as Malignant</li>
+                    <li><strong>≤ 0.5:</strong> Classified as Benign</li>
+                </ul>
+                <p><strong>Confidence Score:</strong> Represents how certain the model is, with 100% being completely confident.</p>
+            </div>
+        </div>
+    </div>
+}
                         {activeSection === 'evaluation' && 
                             <div className="model-details-evaluation">
                                 <h1>Model Evaluation</h1>

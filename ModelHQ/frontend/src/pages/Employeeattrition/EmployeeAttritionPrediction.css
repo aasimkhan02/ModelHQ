@@ -33,6 +33,11 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
     padding: 50px;
+
+}
+.attrition-detection{
+    border: 2px solid black;
+    border-radius: 17px;
 }
 
 .input-group {
@@ -80,4 +85,26 @@ body {
     font-size: 18px;
     color: #333;
     font-weight: bold;
+}
+.btn-holder{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.EmployeeAttritionPrediction-hero h1{
+    font-size: 4rem;
+    color: black;
+    margin-top: 15vh;
+}
+.EmployeeAttritionPrediction-hero span{
+    color: #007EA7;
+}
+.EmployeeAttritionPrediction-hero p{
+    text-align: center;
+    font-size: 1.4rem;
+    color: rgb(79, 79, 79);
+    margin-top: 20px;
+    margin-bottom: 15vh;
+    padding: 0 20%;
 }

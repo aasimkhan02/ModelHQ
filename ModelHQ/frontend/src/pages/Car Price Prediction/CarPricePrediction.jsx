@@ -239,114 +239,354 @@ const CarPricePrediction = () => {
                         {activeSection === 'implementation' && 
                             <div className="model-details-implementation">
                                 <h1>Model Implementation</h1>
-                                <p>Technical implementation of our car price prediction system</p>
+                                <p>Line-by-line code explanation of our vehicle valuation system</p>
+                                
+                                {/* LIBRARIES SECTION */}
                                 <div className="implementation-code">
-                                    <h2>Importing Libraries</h2>
-                                    <p>Essential libraries for data processing and machine learning.</p>
+                                    <h2>1. Importing Essential Libraries</h2>
+                                    <p>These libraries provide the foundation for our machine learning pipeline:</p>
+                                    
                                     <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import mean_absolute_error, r2_score`}
+                        {`import pandas as pd
+                        import numpy as np
+                        from sklearn.model_selection import train_test_split
+                        from sklearn.linear_model import LinearRegression
+                        from sklearn.ensemble import RandomForestRegressor
+                        from sklearn.preprocessing import OneHotEncoder, StandardScaler
+                        from sklearn.compose import ColumnTransformer
+                        from sklearn.pipeline import Pipeline
+                        from sklearn.metrics import mean_absolute_error, r2_score`}
                                         </SyntaxHighlighter>
                                     </div>
-                                    <ul>
-                                        <li>pandas: Data manipulation and analysis</li>
-                                        <li>numpy: Numerical computing</li>
-                                        <li>scikit-learn: Machine learning tools</li>
-                                    </ul>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Detailed Explanation:</h3>
+                                        <ul>
+                                            <li><strong>Line 1:</strong> <code>import pandas as pd</code> - Imports Pandas for data manipulation and analysis with DataFrames.</li>
+                                            <li><strong>Line 2:</strong> <code>import numpy as np</code> - Imports NumPy for numerical operations and array processing.</li>
+                                            <li><strong>Line 3:</strong> <code>train_test_split</code> - For splitting data into training and test sets.</li>
+                                            <li><strong>Line 4:</strong> <code>LinearRegression</code> - Basic linear regression model as a baseline.</li>
+                                            <li><strong>Line 5:</strong> <code>RandomForestRegressor</code> - Ensemble method that often performs well on tabular data.</li>
+                                            <li><strong>Line 6:</strong> Preprocessing tools:
+                                                <ul>
+                                                    <li><code>OneHotEncoder</code> - For converting categorical variables</li>
+                                                    <li><code>StandardScaler</code> - For normalizing numerical features</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Line 7:</strong> <code>ColumnTransformer</code> - Applies different transformations to different columns.</li>
+                                            <li><strong>Line 8:</strong> <code>Pipeline</code> - Chains together multiple processing steps.</li>
+                                            <li><strong>Line 9:</strong> Evaluation metrics:
+                                                <ul>
+                                                    <li><code>mean_absolute_error</code> - For measuring average prediction error</li>
+                                                    <li><code>r2_score</code> - For measuring model fit quality</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                                    <h2 style={{marginTop: '50px'}}>Data Loading and Preparation</h2>
-                                    <p>Loading and preprocessing the vehicle dataset.</p>
+                                {/* DATA LOADING SECTION */}
+                                <div className="implementation-code">
+                                    <h2>2. Data Loading and Cleaning</h2>
+                                    <p>This function loads and prepares the vehicle dataset for analysis:</p>
+                                    
                                     <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`# Load and clean the dataset
-df = pd.read_csv('car_data.csv')
-df = df.dropna(subset=['price'])  # Remove rows with missing prices
-df['age'] = 2023 - df['year']  # Calculate vehicle age
-df['mileage_ratio'] = df['mileage'] / df['age']  # Mileage-to-age ratio
+                        {`# Load and clean the dataset
+                        df = pd.read_csv('car_data.csv')
+                        df = df.dropna(subset=['price'])  # Remove rows with missing prices
+                        df['age'] = 2023 - df['year']  # Calculate vehicle age
+                        df['mileage_ratio'] = df['mileage'] / df['age']  # Mileage-to-age ratio
 
-# Filter unrealistic values
-df = df[(df['price'] > 1000) & (df['price'] < 200000)]
-df = df[df['mileage'] < 300000]`}
+                        # Filter unrealistic values
+                        df = df[(df['price'] > 1000) & (df['price'] < 200000)]
+                        df = df[df['mileage'] < 300000]`}
                                         </SyntaxHighlighter>
                                     </div>
-                                    <p style={{marginTop: '15px'}}>This code loads the dataset, calculates important features, and filters out unrealistic values.</p>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Key Processing Steps:</h3>
+                                        <ol>
+                                            <li><strong>Line 2:</strong> Loads the CSV file into a Pandas DataFrame for manipulation.</li>
+                                            <li><strong>Line 3:</strong> Drops any rows where price is missing (our target variable).</li>
+                                            <li><strong>Line 4:</strong> Creates a new 'age' feature by subtracting manufacturing year from current year.</li>
+                                            <li><strong>Line 5:</strong> Calculates mileage-to-age ratio as an important derived feature.</li>
+                                            <li><strong>Line 8:</strong> Filters out unrealistic prices (below $1,000 or above $200,000).</li>
+                                            <li><strong>Line 9:</strong> Removes vehicles with extremely high mileage (over 300,000 miles).</li>
+                                        </ol>
+                                        <p><strong>Why this matters:</strong> Clean data and meaningful derived features significantly improve model accuracy.</p>
+                                    </div>
+                                </div>
 
-                                    <h2 style={{marginTop: '50px'}}>Feature Engineering</h2>
-                                    <p>Creating meaningful features for the prediction model.</p>
+                                {/* FEATURE ENGINEERING SECTION */}
+                                <div className="implementation-code">
+                                    <h2>3. Feature Engineering</h2>
+                                    <p>Creating additional meaningful features from raw data:</p>
+                                    
                                     <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`# Create regional price adjustments
-state_avg = df.groupby('state')['price'].mean().to_dict()
-df['state_adjustment'] = df['state'].map(state_avg)
+                        {`# Create regional price adjustments
+                        state_avg = df.groupby('state')['price'].mean().to_dict()
+                        df['state_adjustment'] = df['state'].map(state_avg)
 
-# Create brand premium features
-brand_avg = df.groupby('brand')['price'].mean().to_dict()
-df['brand_premium'] = df['brand'].map(brand_avg)
+                        # Create brand premium features
+                        brand_avg = df.groupby('brand')['price'].mean().to_dict()
+                        df['brand_premium'] = df['brand'].map(brand_avg)
 
-# Condition mapping
-condition_map = {'excellent': 1, 'good': 0.8, 'fair': 0.6, 'poor': 0.4}
-df['condition_score'] = df['condition'].map(condition_map)`}
+                        # Condition mapping
+                        condition_map = {'excellent': 1, 'good': 0.8, 'fair': 0.6, 'poor': 0.4}
+                        df['condition_score'] = df['condition'].map(condition_map)`}
                                         </SyntaxHighlighter>
                                     </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Feature Engineering Explained:</h3>
+                                        <table className="params-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Feature</th>
+                                                    <th>Creation Method</th>
+                                                    <th>Purpose</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>state_adjustment</code></td>
+                                                    <td>Average price by state</td>
+                                                    <td>Captures regional price variations</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>brand_premium</code></td>
+                                                    <td>Average price by brand</td>
+                                                    <td>Accounts for brand value differences</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>condition_score</code></td>
+                                                    <td>Numerical mapping of conditions</td>
+                                                    <td>Quantifies vehicle condition impact</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h3>Detailed Breakdown:</h3>
+                                        <ul>
+                                            <li><strong>Lines 2-3:</strong> Calculates average prices per state and creates adjustment factors</li>
+                                            <li><strong>Lines 6-7:</strong> Determines brand-specific price premiums</li>
+                                            <li><strong>Lines 10-11:</strong> Converts categorical condition descriptions to numerical scores</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                                    <h2 style={{marginTop: '50px'}}>Model Pipeline</h2>
-                                    <p>Building the complete prediction pipeline.</p>
+                                {/* PREPROCESSING PIPELINE SECTION */}
+                                <div className="implementation-code">
+                                    <h2>4. Building the Preprocessing Pipeline</h2>
+                                    <p>Creating a robust data transformation pipeline:</p>
+                                    
                                     <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`# Define preprocessing for numeric and categorical features
-numeric_features = ['year', 'mileage', 'age', 'mileage_ratio']
-categorical_features = ['brand', 'state', 'condition']
+                        {`# Define preprocessing for numeric and categorical features
+                        numeric_features = ['year', 'mileage', 'age', 'mileage_ratio']
+                        categorical_features = ['brand', 'state', 'condition']
 
-numeric_transformer = Pipeline(steps=[
-    ('scaler', StandardScaler())
-])
+                        numeric_transformer = Pipeline(steps=[
+                            ('scaler', StandardScaler())
+                        ])
 
-categorical_transformer = Pipeline(steps=[
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))
-])
+                        categorical_transformer = Pipeline(steps=[
+                            ('onehot', OneHotEncoder(handle_unknown='ignore'))
+                        ])
 
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorical_features)
-    ])
-
-# Create and train the model
-model = Pipeline(steps=[
-    ('preprocessor', preprocessor),
-    ('regressor', RandomForestRegressor(n_estimators=100))
-])
-
-model.fit(X_train, y_train)`}
+                        preprocessor = ColumnTransformer(
+                            transformers=[
+                                ('num', numeric_transformer, numeric_features),
+                                ('cat', categorical_transformer, categorical_features)
+                            ])`}
                                         </SyntaxHighlighter>
                                     </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Pipeline Architecture:</h3>
+                                        <div className="architecture-visual">
+                                            <div className="pipeline-block">
+                                                <h4>Numeric Features</h4>
+                                                <p>Standard scaling for:</p>
+                                                <ul>
+                                                    <li>Year</li>
+                                                    <li>Mileage</li>
+                                                    <li>Age</li>
+                                                    <li>Mileage ratio</li>
+                                                </ul>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="pipeline-block">
+                                                <h4>Categorical Features</h4>
+                                                <p>One-hot encoding for:</p>
+                                                <ul>
+                                                    <li>Brand</li>
+                                                    <li>State</li>
+                                                    <li>Condition</li>
+                                                </ul>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="pipeline-block">
+                                                <h4>ColumnTransformer</h4>
+                                                <p>Combines both pipelines</p>
+                                                <p>Applies appropriate transformations</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3>Key Design Choices:</h3>
+                                        <ul>
+                                            <li><strong>StandardScaler:</strong> Normalizes numeric features to have mean=0 and variance=1</li>
+                                            <li><strong>OneHotEncoder:</strong> Converts categorical variables to binary columns</li>
+                                            <li><strong>handle_unknown='ignore':</strong> Handles new categories during prediction</li>
+                                            <li><strong>ColumnTransformer:</strong> Applies different transformations to different columns</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                                    <h2 style={{marginTop: '50px'}}>Making Predictions</h2>
-                                    <p>Using the trained model to predict car prices.</p>
+                                {/* MODEL TRAINING SECTION */}
+                                <div className="implementation-code">
+                                    <h2>5. Model Training and Evaluation</h2>
+                                    <p>Creating and evaluating the complete prediction model:</p>
+                                    
                                     <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`def predict_price(input_data):
-    # Convert input to DataFrame
-    input_df = pd.DataFrame([input_data])
-    
-    # Calculate derived features
-    input_df['age'] = 2023 - input_df['year']
-    input_df['mileage_ratio'] = input_df['mileage'] / input_df['age']
-    
-    # Make prediction
-    predicted_price = model.predict(input_df)[0]
-    confidence = model.score(X_test, y_test)  # R² score as confidence
-    
-    return predicted_price, confidence`}
+                        {`# Split data into features and target
+                        X = df.drop('price', axis=1)
+                        y = df['price']
+
+                        # Train-test split
+                        X_train, X_test, y_train, y_test = train_test_split(
+                            X, y, test_size=0.2, random_state=42
+                        )
+
+                        # Create and train the model
+                        model = Pipeline(steps=[
+                            ('preprocessor', preprocessor),
+                            ('regressor', RandomForestRegressor(
+                                n_estimators=100,
+                                max_depth=10,
+                                min_samples_leaf=4,
+                                random_state=42
+                            ))
+                        ])
+
+                        model.fit(X_train, y_train)
+
+                        # Evaluate model
+                        y_pred = model.predict(X_test)
+                        mae = mean_absolute_error(y_test, y_pred)
+                        r2 = r2_score(y_test, y_pred)`}
                                         </SyntaxHighlighter>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Training Process:</h3>
+                                        <table className="training-table">
+                                            <tr>
+                                                <td><strong>Data Splitting:</strong></td>
+                                                <td>20% of data held out for testing (Line 7-9)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Model Pipeline:</strong></td>
+                                                <td>Combines preprocessing with Random Forest (Line 12-19)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Random Forest Parameters:</strong></td>
+                                                <td>
+                                                    <ul>
+                                                        <li>100 decision trees (n_estimators)</li>
+                                                        <li>Max depth of 10 levels</li>
+                                                        <li>Minimum 4 samples per leaf</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Evaluation Metrics:</strong></td>
+                                                <td>
+                                                    <ul>
+                                                        <li>Mean Absolute Error (MAE) in dollars</li>
+                                                        <li>R² score (coefficient of determination)</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <h3>Why Random Forest?</h3>
+                                        <ol>
+                                            <li>Handles mixed feature types (numeric + categorical) well</li>
+                                            <li>Resistant to overfitting with proper parameter tuning</li>
+                                            <li>Provides feature importance scores</li>
+                                            <li>Works well with the scikit-learn pipeline system</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                {/* PREDICTION SECTION */}
+                                <div className="implementation-code">
+                                    <h2>6. Making Predictions</h2>
+                                    <p>Using the trained model to predict car prices from new input:</p>
+                                    
+                                    <div className="code-section">
+                                        <SyntaxHighlighter language="python" style={dracula}>
+                        {`def predict_price(input_data):
+                            # Convert input to DataFrame
+                            input_df = pd.DataFrame([input_data])
+                            
+                            # Calculate derived features
+                            input_df['age'] = 2023 - input_df['year']
+                            input_df['mileage_ratio'] = input_df['mileage'] / input_df['age']
+                            
+                            # Apply same feature engineering
+                            input_df['state_adjustment'] = input_df['state'].map(state_avg)
+                            input_df['brand_premium'] = input_df['brand'].map(brand_avg)
+                            input_df['condition_score'] = input_df['condition'].map(condition_map)
+                            
+                            # Make prediction
+                            predicted_price = model.predict(input_df)[0]
+                            confidence = model.score(X_test, y_test)  # R² score as confidence
+                            
+                            return predicted_price, confidence`}
+                                        </SyntaxHighlighter>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Prediction Workflow:</h3>
+                                        <div className="prediction-flow">
+                                            <div className="step">
+                                                <div className="step-number">1</div>
+                                                <p>Convert input to DataFrame format</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">2</div>
+                                                <p>Calculate age and mileage ratio</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">3</div>
+                                                <p>Apply same feature engineering</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">4</div>
+                                                <p>Generate prediction using trained model</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">5</div>
+                                                <p>Return price + confidence (R² score)</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3>Input Requirements:</h3>
+                                        <ul>
+                                            <li><strong>Required Fields:</strong> year, mileage, brand, state, condition</li>
+                                            <li><strong>Optional Fields:</strong> model, color, title_status</li>
+                                            <li><strong>Format:</strong> Dictionary matching training data structure</li>
+                                        </ul>
+                                        <p><strong>Confidence Score:</strong> Uses the model's R² score on test data as an overall confidence measure.</p>
                                     </div>
                                 </div>
                             </div>

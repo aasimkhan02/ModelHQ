@@ -423,5 +423,43 @@ def predict_housing_price(data: dict):
             "message": str(e)
         }
 
+@app.post("/predict/mumbai_house_price")
+def predict_mumbai_house_price(data: dict):
+    try:
+        # Load the full model pipeline (includes preprocessor + regressor)
+        with open("./models/HousePrice/mumbai_house_price_model.pkl", "rb") as f:
+            model = pickle.load(f)
+
+        # Load feature reference
+        with open("./models/HousePrice/feature_reference.pkl", "rb") as f:
+            reference = pickle.load(f)
+
+        expected_cols = reference["all_features"]
+
+        # Convert input to DataFrame
+        input_df = pd.DataFrame([data])
+
+        # Ensure all expected columns are present in the input
+        for col in expected_cols:
+            if col not in input_df.columns:
+                input_df[col] = 0  # Add missing columns with default value 0
+
+        # Reorder the input DataFrame columns to match the training data
+        input_df = input_df[expected_cols]
+
+        # Make prediction using the loaded model (which includes preprocessing)
+        prediction = model.predict(input_df)[0]
+
+        return {
+            "status": "success",
+            "prediction": float(prediction)
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

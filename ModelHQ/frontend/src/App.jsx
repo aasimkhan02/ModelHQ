@@ -5,15 +5,14 @@ import Home from "./pages/Home/Home";
 import Model from "./pages/Models/Models";
 import Stock_prediction from "./pages/Stock Prediction Model/Stock_prediction";
 import Spam from './pages/Spam detection/Spam_detection'
-import Movie from './pages/Movie Recommendation/Movie_recommendation'
-import Housing from './pages/Housing price prediction/hpp'
 import Heart_disease from './pages/Heart disease/Heart_disease'
 import BreastCancer from "./pages/Breast Cancer/BreastCancer";
 import SalesPrediction from './pages/sales prediction/salesPrediction';
 import CarPricePrediction from './pages/Car Price Prediction/CarPricePrediction'
-import BankChurnPrediction from "./pages/BankChern/BankChernPrediction";
+import BankChurnPrediction from "./pages/BankChern/BankChurnPrediction";
 import EmployeeAttritionPrediction from "./pages/Employeeattrition/EmployeeAttritionPrediction";
 import DiabetesPrediction from "./pages/Diabetes Prediction Model/DiabetesPrediction";
+import HousingPricing from './pages/Housing price prediction/HousingPrice'
 
 const App = () => {
 
@@ -26,8 +25,6 @@ const App = () => {
         <Route path="/models" element={<Model />} />
         <Route path='/stock_prediction' element={<Stock_prediction/>} />
         <Route path='/spam' element={<Spam/>} />
-        <Route path='/movie' element={<Movie/>} />
-        <Route path='/hpp' element={<Housing/>} />
         <Route path='/heart' element={<Heart_disease/>} />
         <Route path='/BreastCancer' element={<BreastCancer/>} />
         <Route path='/sales_prediction' element={<SalesPrediction />} />
@@ -35,6 +32,7 @@ const App = () => {
         <Route path='/bank_churn' element={<BankChurnPrediction />} />
         <Route path='/employee_attrition' element={<EmployeeAttritionPrediction />} />
         <Route path='/diabetes_prediction' element={<DiabetesPrediction />} />
+        <Route path='/hpp' element={<HousingPricing />} />
       </Routes>
     </Router>
   );
