@@ -204,7 +204,7 @@ const Models = () => {
                                 <li>Classification</li>
                             </div>
                             <hr />
-                            <button className='TryNow stock' onClick={() => navigate('/spam')}>Try Now</button>
+                            <button className='TryNow stock' onClick={() => navigate('/spam_detection')}>Try Now</button>
                         </li>
                         <li>
                             <div className="Marketing">

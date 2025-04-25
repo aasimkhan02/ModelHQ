@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Model from "./pages/Models/Models";
 import Stock_prediction from "./pages/Stock Prediction Model/Stock_prediction";
-import Spam from './pages/Spam detection/Spam_detection'
+import SpamDetection from "./pages/Spam detection/Spam_detection";
 import Heart_disease from './pages/Heart disease/Heart_disease'
 import BreastCancer from "./pages/Breast Cancer/BreastCancer";
 import SalesPrediction from './pages/sales prediction/salesPrediction';
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/models" element={<Model />} />
         <Route path='/stock_prediction' element={<Stock_prediction/>} />
-        <Route path='/spam' element={<Spam/>} />
+        <Route path='/spam_detection' element={<SpamDetection/>} />
         <Route path='/heart' element={<Heart_disease/>} />
         <Route path='/BreastCancer' element={<BreastCancer/>} />
         <Route path='/sales_prediction' element={<SalesPrediction />} />

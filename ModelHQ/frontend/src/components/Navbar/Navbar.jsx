@@ -9,10 +9,7 @@ const Navbar = () => {
     if (location.pathname === '/stock_prediction') {
         return null;
     }
-    if (location.pathname === '/spam') {
-        return null;
-    }
-    if (location.pathname === '/movie') {
+    if (location.pathname === '/spam_detection') {
         return null;
     }
     if (location.pathname === '/hpp') {

@@ -460,6 +460,62 @@ def predict_mumbai_house_price(data: dict):
             "status": "error",
             "message": str(e)
         }
+    
+class SpamInput(BaseModel):
+    email_text: str
+
+@app.post("/predict/spam_detection")
+def predict_spam_detection(data: SpamInput):
+    try:
+        model_path = "./models/spam/spam_classifier_full.pkl"
+
+        if not os.path.exists(model_path):
+            return {
+                "status": "error",
+                "message": f"Model file not found at {model_path}"
+            }
+
+        # Load model safely
+        try:
+            model_obj = joblib.load(model_path)
+        except:
+            with open(model_path, "rb") as f:
+                model_obj = pickle.load(f)
+
+        # Extract the model (pipeline)
+        if isinstance(model_obj, dict):
+            model = model_obj.get("model")
+            if model is None:
+                return {
+                    "status": "error",
+                    "message": "Model dictionary does not contain 'model' key."
+                }
+        else:
+            model = model_obj
+
+        # Clean input
+        email_text = data.email_text.strip()
+        if not email_text:
+            return {
+                "status": "error",
+                "message": "Email text cannot be empty."
+            }
+
+        # Use the pipeline to predict
+        prediction = model.predict([email_text])[0]
+        confidence = model.predict_proba([email_text])[0][1]  # Spam class prob
+
+        return {
+            "status": "success",
+            "prediction": "Spam" if prediction == 1 else "Ham",
+            "confidence": round(float(confidence), 4)
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

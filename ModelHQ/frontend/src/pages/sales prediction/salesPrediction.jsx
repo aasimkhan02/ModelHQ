@@ -236,71 +236,399 @@ const SalesPrediction = () => {
                             </div>
                         )}
 
-                        {activeSection === 'implementation' && (
+                        {activeSection === 'implementation' && 
                             <div className="model-details-implementation">
                                 <h1>Model Implementation</h1>
-                                <p>Technical implementation of our sales prediction pipeline</p>
+                                <p>Line-by-line code explanation of our retail sales forecasting system</p>
                                 
-                                <div className="implementation-phase">
-                                    <h2>1. Data Loading & Initial Setup</h2>
-                                    <div className="code-block">
+                                {/* LIBRARIES SECTION */}
+                                <div className="implementation-code">
+                                    <h2>1. Importing Essential Libraries</h2>
+                                    <p>These libraries provide the foundation for our sales prediction system:</p>
+                                    
+                                    <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`# Load dataset
-df = pd.read_csv('walmart_sales.csv')
-df['Date'] = pd.to_datetime(df['Date'])
-df['WeekOfYear'] = df['Date'].dt.isocalendar().week`}
+                        {`import pandas as pd
+                        import numpy as np
+                        import xgboost as xgb
+                        from sklearn.model_selection import train_test_split
+                        from sklearn.metrics import mean_absolute_error, r2_score
+                        from sklearn.preprocessing import StandardScaler
+                        from sklearn.pipeline import Pipeline`}
                                         </SyntaxHighlighter>
-                                        <div className="code-explanation">
-                                            <p><strong>Line 1:</strong> Loads the dataset into a pandas DataFrame</p>
-                                            <p><strong>Line 2-3:</strong> Converts dates and extracts week numbers</p>
-                                        </div>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Detailed Explanation:</h3>
+                                        <ul>
+                                            <li><strong>Line 1:</strong> <code>pandas</code> - For data manipulation and analysis with DataFrames.</li>
+                                            <li><strong>Line 2:</strong> <code>numpy</code> - For numerical operations and array processing.</li>
+                                            <li><strong>Line 3:</strong> <code>xgboost</code> - Our primary gradient boosting model for regression.</li>
+                                            <li><strong>Line 4:</strong> <code>train_test_split</code> - For splitting data into training and test sets.</li>
+                                            <li><strong>Line 5:</strong> Evaluation metrics:
+                                                <ul>
+                                                    <li><code>mean_absolute_error</code> - Dollar amount of average prediction error</li>
+                                                    <li><code>r2_score</code> - Measures variance explained by model</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Line 6:</strong> <code>StandardScaler</code> - For normalizing numerical features.</li>
+                                            <li><strong>Line 7:</strong> <code>Pipeline</code> - For chaining preprocessing and modeling steps.</li>
+                                        </ul>
                                     </div>
                                 </div>
 
-                                <div className="implementation-phase">
-                                    <h2>2. Feature Engineering</h2>
-                                    <div className="code-block">
+                                {/* DATA LOADING SECTION */}
+                                <div className="implementation-code">
+                                    <h2>2. Data Loading and Temporal Processing</h2>
+                                    <p>Loading and preparing the retail sales dataset with time-based features:</p>
+                                    
+                                    <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`# Create economic composite index
-df['Economic_Index'] = (df['CPI'] * 0.6) + (df['Unemployment'] * 0.4)
+                        {`# Load dataset with proper date parsing
+                        df = pd.read_csv('walmart_sales.csv', parse_dates=['Date'])
 
-# Create holiday flags
-holiday_weeks = [47, 51]  # Thanksgiving and Christmas
-df['Is_Holiday'] = df['WeekOfYear'].isin(holiday_weeks).astype(int)`}
+                        # Extract temporal features
+                        df['Year'] = df['Date'].dt.year
+                        df['WeekOfYear'] = df['Date'].dt.isocalendar().week
+                        df['Month'] = df['Date'].dt.month
+
+                        # Calculate days until next major holiday
+                        holiday_dates = {
+                            'Thanksgiving': pd.to_datetime('2011-11-24'),
+                            'Christmas': pd.to_datetime('2011-12-25')
+                        }
+                        df['DaysToHoliday'] = df['Date'].apply(
+                            lambda x: min((hd - x).days for hd in holiday_dates.values() 
+                                        if (hd - x).days > 0)
+                        )`}
                                         </SyntaxHighlighter>
-                                        <div className="code-explanation">
-                                            <p><strong>Line 1-2:</strong> Combines economic indicators into a single index</p>
-                                            <p><strong>Line 4-5:</strong> Creates binary flags for holiday weeks</p>
-                                        </div>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Key Processing Steps:</h3>
+                                        <ol>
+                                            <li><strong>Line 2:</strong> Loads CSV with automatic date parsing for the 'Date' column.</li>
+                                            <li><strong>Line 5-7:</strong> Extracts year, week number, and month from dates.</li>
+                                            <li><strong>Line 10-15:</strong> Creates a feature counting days until next major holiday.</li>
+                                        </ol>
+                                        <p><strong>Why this matters:</strong> Temporal features are crucial for retail sales forecasting.</p>
+                                        
+                                        <h3>Created Features:</h3>
+                                        <table className="feature-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Feature</th>
+                                                    <th>Type</th>
+                                                    <th>Purpose</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>WeekOfYear</td>
+                                                    <td>Numerical (1-52)</td>
+                                                    <td>Captures weekly seasonality</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DaysToHoliday</td>
+                                                    <td>Numerical</td>
+                                                    <td>Measures holiday proximity effect</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Month</td>
+                                                    <td>Numerical (1-12)</td>
+                                                    <td>Captures monthly trends</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
-                                <div className="implementation-phase">
-                                    <h2>3. Model Training (XGBoost)</h2>
-                                    <div className="code-block">
+                                {/* FEATURE ENGINEERING SECTION */}
+                                <div className="implementation-code">
+                                    <h2>3. Feature Engineering</h2>
+                                    <p>Creating meaningful predictors from raw data:</p>
+                                    
+                                    <div className="code-section">
                                         <SyntaxHighlighter language="python" style={dracula}>
-{`# XGBoost parameters
-params = {
-    'objective': 'reg:squarederror',
-    'max_depth': 6,
-    'learning_rate': 0.1,
-    'subsample': 0.8,
-    'colsample_bytree': 0.8,
-    'n_estimators': 500
-}
+                        {`# Create economic composite index
+                        df['Economic_Index'] = (0.6 * df['CPI']) + (0.4 * (100 - df['Unemployment']))
 
-# Train model
-model = xgb.XGBRegressor(**params)
-model.fit(X_train, y_train)`}
+                        # Create store size categories
+                        df['Store_Size_Category'] = pd.cut(
+                            df['Store_Size'],
+                            bins=[0, 50000, 100000, float('inf')],
+                            labels=['Small', 'Medium', 'Large']
+                        )
+
+                        # Create holiday impact window
+                        df['Holiday_Impact'] = np.where(
+                            df['DaysToHoliday'] <= 7, 1.5,
+                            np.where(df['DaysToHoliday'] <= 14, 1.2, 1.0)
+                        )`}
                                         </SyntaxHighlighter>
-                                        <div className="code-explanation">
-                                            <p><strong>Parameters:</strong> Configured for regression with controlled complexity</p>
-                                            <p><strong>Training:</strong> Uses optimized XGBoost implementation</p>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Engineered Features:</h3>
+                                        <div className="feature-grid">
+                                            <div className="feature-card">
+                                                <h4>Economic_Index</h4>
+                                                <p>Combines CPI and Unemployment into single metric</p>
+                                                <p>Weighted 60% CPI, 40% inverse Unemployment</p>
+                                            </div>
+                                            <div className="feature-card">
+                                                <h4>Store_Size_Category</h4>
+                                                <p>Bins stores into size categories:</p>
+                                                <ul>
+                                                    <li>Small: &lt;50k sq ft</li>
+                                                    <li>Medium: 50k-100k sq ft</li>
+                                                    <li>Large: &gt;100k sq ft</li>
+                                                </ul>
+                                            </div>
+                                            <div className="feature-card">
+                                                <h4>Holiday_Impact</h4>
+                                                <p>Multiplier for holiday proximity:</p>
+                                                <ul>
+                                                    <li>1.5x: Within 1 week</li>
+                                                    <li>1.2x: Within 2 weeks</li>
+                                                    <li>1.0x: Otherwise</li>
+                                                </ul>
+                                            </div>
                                         </div>
+                                        
+                                        <h3>Technical Details:</h3>
+                                        <ul>
+                                            <li><code>pd.cut()</code>: Bins continuous store sizes into categories</li>
+                                            <li><code>np.where()</code>: Creates conditional holiday impact values</li>
+                                            <li>Economic index formula normalizes different economic indicators</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* PREPROCESSING PIPELINE SECTION */}
+                                <div className="implementation-code">
+                                    <h2>4. Building the Preprocessing Pipeline</h2>
+                                    <p>Creating a robust data transformation pipeline:</p>
+                                    
+                                    <div className="code-section">
+                                        <SyntaxHighlighter language="python" style={dracula}>
+                        {`# Define numeric and categorical features
+                        numeric_features = ['Temperature', 'Fuel_Price', 'Economic_Index']
+                        categorical_features = ['Store_Size_Category', 'IsHoliday']
+
+                        # Create preprocessing pipeline
+                        preprocessor = ColumnTransformer(
+                            transformers=[
+                                ('num', StandardScaler(), numeric_features),
+                                ('cat', OneHotEncoder(), categorical_features)
+                            ])
+
+                        # Add feature selection
+                        feature_selector = SelectKBest(score_func=f_regression, k=10)
+
+                        # Complete pipeline
+                        pipeline = Pipeline([
+                            ('preprocessor', preprocessor),
+                            ('selector', feature_selector),
+                            ('regressor', xgb.XGBRegressor())
+                        ])`}
+                                        </SyntaxHighlighter>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Pipeline Architecture:</h3>
+                                        <div className="pipeline-flow">
+                                            <div className="pipeline-step">
+                                                <h4>1. Numeric Features</h4>
+                                                <ul>
+                                                    <li>Standard scaling</li>
+                                                    <li>Temperature, Fuel_Price, Economic_Index</li>
+                                                </ul>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="pipeline-step">
+                                                <h4>2. Categorical Features</h4>
+                                                <ul>
+                                                    <li>One-hot encoding</li>
+                                                    <li>Store size, Holiday status</li>
+                                                </ul>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="pipeline-step">
+                                                <h4>3. Feature Selection</h4>
+                                                <ul>
+                                                    <li>Selects top 10 features</li>
+                                                    <li>Uses F-regression scoring</li>
+                                                </ul>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="pipeline-step">
+                                                <h4>4. XGBoost Model</h4>
+                                                <ul>
+                                                    <li>Regression mode</li>
+                                                    <li>With default parameters</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3>Design Choices:</h3>
+                                        <ul>
+                                            <li><strong>StandardScaler:</strong> Ensures numeric features have similar scales</li>
+                                            <li><strong>OneHotEncoder:</strong> Properly handles categorical variables</li>
+                                            <li><strong>SelectKBest:</strong> Reduces dimensionality while keeping most predictive features</li>
+                                            <li><strong>Pipeline:</strong> Ensures consistent preprocessing during training and prediction</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* MODEL TRAINING SECTION */}
+                                <div className="implementation-code">
+                                    <h2>5. Model Training with Hyperparameter Tuning</h2>
+                                    <p>Optimizing the XGBoost model for sales prediction:</p>
+                                    
+                                    <div className="code-section">
+                                        <SyntaxHighlighter language="python" style={dracula}>
+                        {`# Define XGBoost parameters
+                        params = {
+                            'objective': 'reg:squarederror',
+                            'max_depth': 6,
+                            'learning_rate': 0.05,
+                            'subsample': 0.8,
+                            'colsample_bytree': 0.8,
+                            'n_estimators': 1000,
+                            'early_stopping_rounds': 50,
+                            'eval_metric': 'mae'
+                        }
+
+                        # Create and train model
+                        model = xgb.XGBRegressor(**params)
+                        model.fit(
+                            X_train, y_train,
+                            eval_set=[(X_val, y_val)],
+                            verbose=10
+                        )`}
+                                        </SyntaxHighlighter>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Parameter Optimization:</h3>
+                                        <table className="params-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Value</th>
+                                                    <th>Purpose</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>max_depth</code></td>
+                                                    <td>6</td>
+                                                    <td>Controls tree complexity</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>learning_rate</code></td>
+                                                    <td>0.05</td>
+                                                    <td>Small steps for better optimization</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>subsample</code></td>
+                                                    <td>0.8</td>
+                                                    <td>Prevents overfitting</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>n_estimators</code></td>
+                                                    <td>1000</td>
+                                                    <td>Number of boosting rounds</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>early_stopping</code></td>
+                                                    <td>50</td>
+                                                    <td>Stops if no improvement</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <h3>Training Process:</h3>
+                                        <ol>
+                                            <li>Uses validation set for early stopping</li>
+                                            <li>Monitors Mean Absolute Error (MAE)</li>
+                                            <li>Prints progress every 10 iterations</li>
+                                            <li>Automatically selects optimal number of trees</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                {/* PREDICTION SECTION */}
+                                <div className="implementation-code">
+                                    <h2>6. Making Predictions</h2>
+                                    <p>Using the trained model to forecast sales:</p>
+                                    
+                                    <div className="code-section">
+                                        <SyntaxHighlighter language="python" style={dracula}>
+                        {`def predict_sales(input_data):
+                            # Convert input to DataFrame
+                            input_df = pd.DataFrame([input_data])
+                            
+                            # Calculate derived features
+                            input_df['Economic_Index'] = (0.6 * input_df['CPI']) + (0.4 * (100 - input_df['Unemployment']))
+                            input_df['DaysToHoliday'] = calculate_holiday_distance(input_df['Date'])
+                            
+                            # Ensure all training columns exist
+                            input_df = align_columns(input_df, training_columns)
+                            
+                            # Make prediction
+                            prediction = model.predict(input_df)[0]
+                            confidence = calculate_confidence(prediction, input_df)
+                            
+                            return {
+                                'prediction': prediction,
+                                'confidence': confidence,
+                                'important_factors': get_top_factors(input_df)
+                            }`}
+                                        </SyntaxHighlighter>
+                                    </div>
+                                    
+                                    <div className="code-explanation">
+                                        <h3>Prediction Workflow:</h3>
+                                        <div className="prediction-flow">
+                                            <div className="step">
+                                                <div className="step-number">1</div>
+                                                <p>Convert input to DataFrame</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">2</div>
+                                                <p>Calculate derived features</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">3</div>
+                                                <p>Align with training columns</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">4</div>
+                                                <p>Generate prediction</p>
+                                            </div>
+                                            <div className="arrow">→</div>
+                                            <div className="step">
+                                                <div className="step-number">5</div>
+                                                <p>Return prediction with confidence</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3>Business Insights:</h3>
+                                        <ul>
+                                            <li><strong>Economic_Index:</strong> Shows how macroeconomic factors affect prediction</li>
+                                            <li><strong>DaysToHoliday:</strong> Highlights seasonal impact</li>
+                                            <li><strong>important_factors:</strong> Lists which features most influenced the prediction</li>
+                                            <li><strong>confidence:</strong> Based on similarity to training data</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        }
 
                         {activeSection === 'evaluation' && (
                             <div className="model-details-evaluation">
