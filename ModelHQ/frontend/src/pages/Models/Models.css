@@ -2,7 +2,7 @@
     background-color: rgb(255, 255, 255);
     width: 100%;
     height: auto;
-    min-height: 500vh;
+    min-height: 350vh;
     display: flex;
     flex-direction: column;
 }

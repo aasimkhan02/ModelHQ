@@ -55,7 +55,7 @@ const BreastCancer = () => {
     return (
         <div className='BreastCancerClassifier'>
             <div className="classifier-header">
-                <div className="logo">ModelHQ</div>
+                <div className="logo">ModelHub</div>
                 <FaAtlas className="diagnosis-icon" onClick={() => setIsSidebarOpen(true)} />
             </div>
 

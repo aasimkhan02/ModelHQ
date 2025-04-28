@@ -52,7 +52,7 @@ const Stock_prediction = () => {
     return (
         <div className='Stock_prediction'>
             <div className="stock-header">
-                <div className="logo">ModelHQ</div>
+                <div className="logo">ModelHub</div>
                 <FaAtlas className="Atlas-icon" onClick={() => setIsSidebarOpen(true)} />
             </div>
             <div className="stock-search">

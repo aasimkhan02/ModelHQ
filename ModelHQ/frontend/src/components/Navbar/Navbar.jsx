@@ -50,17 +50,9 @@ const Navbar = () => {
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
                 >
-                    <h3>Features</h3>
-                    {dropdownOpen && (
-                        <ul className="dropdown-menu">
-                            <li><Link to="/models" className="nav-link">Models</Link></li>
-                            <li><Link to="/learning" className="nav-link">Tutorials</Link></li>
-                        </ul>
-                    )}
+                    <h3><Link to="/models" className="nav-link">Models</Link></h3>
                 </li>
-                <li><Link to="/contact" className="nav-link"><h3>Contact</h3></Link></li>
             </ul>
-            <button className='Signup'><h3>Signup</h3></button>
         </div>
     );
 }

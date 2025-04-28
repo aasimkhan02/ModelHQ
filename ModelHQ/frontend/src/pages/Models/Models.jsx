@@ -52,7 +52,7 @@ const Models = () => {
                                 <h2>Breast Cancer Prediction</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{color: '#007EA7'}}/>
-                                    <h4 style={{fontWeight: 500}}>98%</h4>
+                                    <h4 style={{fontWeight: 500}}>92%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI Powered Breast Cancer classifier using CNN</p>
@@ -71,7 +71,7 @@ const Models = () => {
                                 <h2>Stock Price Predictor</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{color: '#007EA7'}}/>
-                                    <h4 style={{fontWeight: 500}}>92%</h4>
+                                    <h4 style={{fontWeight: 500}}>95%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI-powered model predicting future stock prices from market trends.</p>
@@ -90,7 +90,7 @@ const Models = () => {
                                 <h2>Car Price Prediction</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{ color: '#007EA7' }} />
-                                    <h4 style={{ fontWeight: 500 }}>90%</h4>
+                                    <h4 style={{ fontWeight: 500 }}>96%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI-powered model predicting car prices based on features like mileage, year, and condition.</p>
@@ -114,29 +114,10 @@ const Models = () => {
                                 <p>Featured</p>
                             </div>
                             <div className="Model-heading">
-                                <h2>House Price Prediction</h2>
-                                <div className="Model-accuracy">
-                                    <FaBolt className="bolt-icon" style={{color: '#007EA7'}}/>
-                                    <h4 style={{fontWeight: 500}}>92%</h4>
-                                </div>
-                            </div>
-                            <p className='Model-subheading'>AI-powered hpp using historical data</p>
-                            <div className="Model-tags">
-                                <li>Finance</li>
-                                <li>Time-series</li>
-                            </div>
-                            <hr />
-                            <button className='TryNow stock' onClick={() => navigate('/hpp')}>Try Now</button>
-                        </li>
-                        <li>
-                            <div className="Marketing">
-                                <p>Featured</p>
-                            </div>
-                            <div className="Model-heading">
                                 <h2>Heart Disease detection</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{color: '#007EA7'}}/>
-                                    <h4 style={{fontWeight: 500}}>98%</h4>
+                                    <h4 style={{fontWeight: 500}}>99%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI-powered Heart disease detection using patient data</p>
@@ -155,7 +136,7 @@ const Models = () => {
                                 <h2>Diabetes Prediction</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{ color: '#007EA7' }} />
-                                    <h4 style={{ fontWeight: 500 }}>98%</h4>
+                                    <h4 style={{ fontWeight: 500 }}>99%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI-powered diabetes prediction using patient data.</p>
@@ -174,7 +155,7 @@ const Models = () => {
                                 <h2>Sales Prediction Model</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{ color: '#007EA7' }} />
-                                    <h4 style={{ fontWeight: 500 }}>95%</h4>
+                                    <h4 style={{ fontWeight: 500 }}>94%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI-powered model predicting weekly sales for retail stores using historical data.</p>
@@ -214,7 +195,7 @@ const Models = () => {
                                 <h2>Bank Churn Prediction</h2>
                                 <div className="Model-accuracy">
                                     <FaBolt className="bolt-icon" style={{ color: '#007EA7' }} />
-                                    <h4 style={{ fontWeight: 500 }}>94%</h4>
+                                    <h4 style={{ fontWeight: 500 }}>99%</h4>
                                 </div>
                             </div>
                             <p className='Model-subheading'>AI-powered model predicting customer churn based on financial and demographic data.</p>

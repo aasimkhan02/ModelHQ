@@ -68,7 +68,7 @@ const SalesPrediction = () => {
     return (
         <div className="SalesPrediction">
             <div className="header">
-                <div className="logo">ModelHQ</div>
+                <div className="logo">ModelHub</div>
                 <FaAtlas className="book-icon" onClick={() => setIsSidebarOpen(true)} />
             </div>
             <div className="SalesPrediction-hero">

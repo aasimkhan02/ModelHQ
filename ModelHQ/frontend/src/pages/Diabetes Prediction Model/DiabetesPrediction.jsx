@@ -71,7 +71,7 @@ const DiabetesPrediction = () => {
         <div className="DiabetesPrediction">
             {/* Header */}
             <div className="header">
-                <div className="logo">ModelHQ</div>
+                <div className="logo">ModelHub</div>
                 <FaAtlas className="book-icon" onClick={() => setIsSidebarOpen(true)} />
             </div>
 
