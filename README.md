@@ -47,7 +47,7 @@
 
 ### 1. 📦 Clone the Repository
 
-git clone https://github.com/your-username/ModelHQ.git
+git clone https://github.com/aasimkhan02/ModelHQ.git
 cd ModelHQ
 2. 🐍 Backend Setup (FastAPI)
 Works best with Python 3.8 or newer.
