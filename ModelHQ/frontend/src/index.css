@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Outfit:wght@100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+html, body {
+    height: 100%; 
+    width: 100%; 
+    scroll-behavior: smooth;
+}
+
+body {
+    background: black;
+    font-family: "Outfit", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background-color: black;
+}

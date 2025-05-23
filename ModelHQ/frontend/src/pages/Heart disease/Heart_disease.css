@@ -1,0 +1,486 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    box-shadow: none !important;
+}
+.header .logo{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.book-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+.HeartDiseasePrediction-hero{
+    width: 100%;
+    height: 50vh;
+    margin-top: 10vh;
+    text-align: center;
+}
+.HeartDiseasePrediction-hero h1 {
+    font-size: 65px;
+    color: #000000;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+.HeartDiseasePrediction-hero span{
+    color: #007EA7;
+}
+.HeartDiseasePrediction-hero p{
+    color: #575757;
+    font-size: 25px;
+    padding: 0% 10%;
+    font-weight: 200;
+}
+/* Sidebar Styles */
+.sidebar-model-details {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    padding: 40px;
+    transition: right 0.4s ease-in-out;
+    overflow-y: auto;
+    border-left: 2px solid black;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.sidebar-model-details:hover {
+    overflow-y: scroll;
+}
+
+.sidebar-model-details::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-model-details::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.sidebar-model-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar-model-details.open {
+    right: 0;
+}
+
+.close-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Main Container */
+.HeartDiseasePrediction {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 3% 5%;
+    background-color: white;
+}
+
+.heart-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.HeartDiseasePrediction .logo {
+    font-weight: bold;
+}
+
+.Atlas-icon {
+    color: black;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+/* Heart Detection Section */
+.heart-detection {
+    margin: 20px auto;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.heart-detection h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.heart-detection .description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 50px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.input-group label {
+    color: #333;
+    margin-top: 10px;
+    font-size: 19px !important;
+    font-size: bold;
+    width: 100%;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 23rem;
+}
+.notice{
+    background-color: #007EA7;
+    width: 100%;
+    height: 100px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 5%;
+    color: white;
+    font-size: 22px;
+    gap: 3px;
+}
+.notice p{
+    font-weight: 100;
+    font-size: 19px;
+}
+
+.predict-button{
+    width: 30rem;
+    height: 3rem;
+    background-color: #007EA7;
+    margin-bottom: 30px;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+.predict-button:hover{
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid black;
+}
+
+.prediction-result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.prediction-result .error {
+    color: red;
+}
+
+.prediction-result .result {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.prediction-result .probability {
+    color: #3498db;
+}
+
+/* Sidebar Content */
+.model-details-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.model-details-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.model-details-container p {
+    font-size: 16px;
+    color: #666;
+}
+
+.model-details-options {
+    width: 80%;
+    height: 7vh;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin-top: 40px;
+}
+
+.model-details-options button {
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    gap: 10px;
+    height: 100%;
+    color: black;
+    font-size: 16px;
+}
+
+.model-details-options button.active {
+    background-color: rgb(255, 255, 255);
+}
+
+.model-details-content {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 50px;
+    height: auto;
+}
+
+.model-details-overview, .model-details-implementation {
+    padding: 1% 5%;
+}
+
+.model-details-overview h1, .model-details-implementation h1 {
+    font-size: 30px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.model-details-overview p, .model-details-implementation p {
+    text-align: left;
+    font-size: 19px;
+    margin-top: 5px;
+}
+
+.overview-cards {
+    width: 100%;
+    height: 40vh;
+    margin-top: 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.overview-cards li {
+    width: 40%;
+    height: 100%;
+    background-color: #ebebeb;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 3% 3%;
+}
+
+.overview-cards li .circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c7c7c7;
+    font-size: 20px;
+}
+
+.overview-cards li h3 {
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.overview-cards li p {
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+}
+
+.DataSource h3, .ModelUsed h3, .ApproachUsed h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 50px;
+}
+
+.DataSource ul, .ModelUsed ul {
+    margin-left: 30px;
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.sidebar-model-details hr {
+    margin-top: 30px;
+    border: 1px solid rgba(125, 125, 125, 0.295);
+}
+
+.ApproachUsed p {
+    color: black;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.ApproachUsed {
+    margin-bottom: 10vh;
+}
+
+.implementation-code {
+    width: 100%;
+    height: 100%;
+    min-height: 50vh;
+    margin-top: 40px;
+}
+
+.implementation-code h2 {
+    font-weight: 400;
+    font-size: 23px;
+}
+
+.implementation-code p {
+    font-size: 19px;
+    color: black;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.code-section {
+    width: 100%;
+    height: auto;
+    background-color: black;
+    margin-top: 25px;
+}
+
+.implementation-code ul {
+    margin-left: 20px;
+    font-size: 19px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.model-details-evaluation {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.model-details-evaluation h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.model-details-evaluation p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.metric-section {
+    margin-bottom: 30px;
+}
+
+.metric-section h2 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.metric-section .accuracy {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-bottom: 10px;
+}
+
+.metric-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.metric-section table th, .metric-section table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.metric-section table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.validation-methodology {
+    margin-top: 30px;
+}
+
+.validation-methodology h2 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.validation-methodology h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.validation-methodology ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.validation-methodology ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}

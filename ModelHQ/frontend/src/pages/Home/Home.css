@@ -1,0 +1,409 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+
+.Hero {
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    gap: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.Hero hr {
+    width: 2px;
+    height: 100%;
+    background-color: #adadff47;
+    border: none;
+    position: absolute;
+    left: 8vh;
+    z-index: 0;
+}
+.hero-texts{
+    padding: 11% 5%;
+    width: 100%;
+    height: 100%;
+}
+.hero-texts h3{
+    font-size: 27px;
+    font-weight: 400;
+}
+.hero-texts h1{
+    font-family: 'orbitron', serif;
+    font-size: 190px;
+    font-weight: 500;
+    letter-spacing: 20px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+.hero-texts h2{
+    font-weight: 400;
+    width: 50%;
+    padding-left: 15%;
+    margin-left: 5rem;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 31px;
+}
+
+.hr2{
+    margin-left: 27vh;
+}
+.hr3{
+    margin-left: 130vh;
+}
+.hr4{
+    margin-left: 140vh;
+}
+
+.Hero img {
+    position: absolute;
+    right: 10%;
+    width: 32%;
+    bottom: 0;
+}
+.Hero button{
+    width: 13rem;
+    background-color: #007EA7;
+    color: white;
+    height: 3.4rem;
+    margin-left: 30%;
+    margin-top: 2rem;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+.marquee{
+    background-color: #003459;
+    color: white;
+    width: 100%;
+    height: 4rem;
+}
+.Features{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+    padding: 9% 9%;
+    color: white;
+    gap: 20px;
+    background-color: black;
+}
+.Features h1{
+    font-size: 120px;
+    font-weight: 500;
+}
+.Features h2{
+    font-weight: 200;
+    font-size: 29px;
+    position: relative;
+    left: 5px;
+}
+.feature-cards{
+    width: 100%;
+    height: auto;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 132px;
+    position: relative;
+    left: 7px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+.feature-cards li{
+    background-color: white;
+    width: 27rem;
+    height: 32rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: black;
+    padding-top: 3%;
+    border-radius: 15px;
+} 
+.feature-cards li h1{
+    font-size: 55px;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 80%;
+}
+.feature-cards li img{
+    width: 35rem;
+    position: absolute;
+    right: -7rem;
+    bottom: -4rem;
+}
+.feature-cards li .codeimg{
+    width: 29rem;
+    position: absolute;
+    right: -4rem;
+    bottom: -5rem;
+}
+.feature-cards li .singlebookimg{
+    width: 20rem;
+    transform: scaleX(-1);
+    position: absolute;
+    right: -2rem;
+    bottom: -8rem;
+}
+.feature-cards li .laptopimg{
+    width: 33rem;
+    position: absolute;
+    right: -9rem;
+    bottom: -8rem;
+}
+.Model-categories{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 3%;
+}
+.Model-categories h1{
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 80px;
+}
+.categories {
+    width: 100%;
+    height: 150vh;
+    display: flex;
+    gap: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    margin-top: 5rem;
+}
+
+.Category-heading{
+    background-color: white;
+    width: 22rem;
+    height: 17rem;
+    position: relative;
+}
+.Category-heading h2{
+    font-weight: 400;
+    padding: 5% 8%;
+    font-size: 33px;
+}
+.Category-heading button{
+    width: 10rem;
+    height: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    position: absolute;
+    right: 30px;
+    margin-top: 20px;
+}
+.Healthcare{
+    background-color: white;
+    width: 22rem;
+    height: 23rem;
+    background-image: url('./../../assets/healthcare.jpg');
+    background-position: top;
+    background-size: cover;
+    border-radius: 15px;
+    position: relative;
+}
+.Healthcare h2{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    font-size: 45px;
+    font-weight: 500;
+    text-align: left;
+}
+.Buisness{
+    background-color: white;
+    width: 22rem;
+    height: 48rem;
+    background-image: url('./../../assets/buisness.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    position: relative;
+}
+.Buisness h2{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    font-size: 45px;
+    font-weight: 500;
+    color: white;
+    top: 30px;
+}
+.Retail{
+    background-color: white;
+    width: 22rem;
+    height: 29rem;
+    position: relative;
+    bottom: 32rem;
+    background-image: url('./../../assets/clothes.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    position: relative;
+}
+.Retail h2{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    font-size: 45px;
+    font-weight: 500;
+    top: 30px;
+}
+.Education{
+    background-color: white;
+    width: 22rem;
+    height: 23rem;
+    position: relative;
+    bottom: 26rem;
+    background-image: url('./../../assets/books.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+}
+.Education h2{
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    font-size: 45px;
+    font-weight: 500;
+    top: 30px;
+    left: 30px;
+}
+.Why-us{
+    width: 100%;
+    height: auto;
+    background-color: black;
+    color: white;
+    padding: 7% 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+.Heading{
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 80px;
+}
+.Whyus-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+}
+.Whyus-container img {
+    width: 45%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 90%);
+}
+.Whyus-container .Whyus-content h2{
+    font-size: 40px;
+    font-weight: 500;
+}
+.Whyus-container .Whyus-content h3{
+    font-size: 25px;
+    font-weight: 200;
+}
+.Whyus-content{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+.Whyus-content button{
+    width: 13rem;
+    height: 3.5rem;
+    background-color: #007EA7;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.popular-models{
+    width: 100%;
+    height: auto;
+    border-bottom: 5vh solid #003459;
+    background-color: #003459;
+    padding: 7% 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.popular-models .Heading{
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+.popular-models .model{
+    width: 80%;
+    background-color: white;
+    height: 23rem;
+    border-radius: 15px;
+    padding: 4% 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.model .model-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.model-header img{
+    width: 7%;
+}
+.model-header h2{
+    font-weight: 400;
+    font-size: 32px;
+}
+.model h3{
+    font-size: 24px;
+    font-weight: 300;
+    padding: 0 2%;
+}
+.model .buildwith{
+    font-size: 25px;
+    font-weight: 500;
+    padding: 0 2%;
+    color: #007EA7;
+}
+.model button{
+    width: 10rem;
+    height: 2.8rem;
+    color: black;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-left: 2%;
+    margin-top: 2%;
+}
