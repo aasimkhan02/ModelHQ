@@ -1,0 +1,215 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    box-shadow: none !important;
+}
+.header .logo{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.book-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+
+.MumbaiHousePricePrediction-hero{
+    width: 100%;
+    height: 50vh;
+    margin-top: 10vh;
+    text-align: center;
+}
+.MumbaiHousePricePrediction-hero h1 {
+    font-size: 65px;
+    color: #000000;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+.MumbaiHousePricePrediction-hero span{
+    color: #007EA7;
+}
+.MumbaiHousePricePrediction-hero p{
+    color: #575757;
+    font-size: 25px;
+    padding: 0% 10%;
+    font-weight: 200;
+}
+
+/* Sidebar Styles */
+.sidebar-model-details {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    padding: 40px;
+    transition: right 0.4s ease-in-out;
+    overflow-y: auto;
+    border-left: 2px solid black;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.sidebar-model-details:hover {
+    overflow-y: scroll;
+}
+
+.sidebar-model-details::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-model-details::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.sidebar-model-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar-model-details.open {
+    right: 0;
+}
+
+.close-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Main Container */
+.MumbaiHousePricePrediction {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 3% 5%;
+    background-color: white;
+}
+
+/* Price Detection Section */
+.price-detection {
+    margin: 20px auto;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.price-detection h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.price-detection .description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 50px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.input-group label {
+    color: #333;
+    margin-top: 10px;
+    font-size: 19px !important;
+    font-size: bold;
+    width: 100%;
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 23rem;
+}
+
+.notice{
+    background-color: #007EA7;
+    width: 100%;
+    height: 100px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 5%;
+    color: white;
+    font-size: 22px;
+    gap: 3px;
+}
+
+.notice p{
+    font-weight: 100;
+    font-size: 19px;
+}
+
+.predict-button{
+    width: 30rem;
+    height: 3rem;
+    background-color: #007EA7;
+    margin-bottom: 30px;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+
+.predict-button:hover{
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid black;
+}
+
+.prediction-result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.prediction-result .error {
+    color: red;
+}
+
+.prediction-result .result {
+    font-weight: bold;
+    color: #2ecc71;
+    font-size: 24px;
+}

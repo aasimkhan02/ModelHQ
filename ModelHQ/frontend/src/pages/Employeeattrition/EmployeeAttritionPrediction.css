@@ -1,0 +1,110 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.EmployeeAttritionPrediction {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 3% 5%;
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.header .logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 50px;
+
+}
+.attrition-detection{
+    border: 2px solid black;
+    border-radius: 17px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.input-group label {
+    color: #333;
+    margin-top: 10px;
+    font-size: 19px !important;
+    font-weight: bold;
+    width: 100%;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 23rem;
+}
+
+.predict-button {
+    width: 30rem;
+    height: 3rem;
+    background-color: #007EA7;
+    margin-bottom: 30px;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+
+.predict-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid black;
+}
+
+.prediction-result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+.btn-holder{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.EmployeeAttritionPrediction-hero h1{
+    font-size: 4rem;
+    color: black;
+    margin-top: 15vh;
+}
+.EmployeeAttritionPrediction-hero span{
+    color: #007EA7;
+}
+.EmployeeAttritionPrediction-hero p{
+    text-align: center;
+    font-size: 1.4rem;
+    color: rgb(79, 79, 79);
+    margin-top: 20px;
+    margin-bottom: 15vh;
+    padding: 0 20%;
+}
